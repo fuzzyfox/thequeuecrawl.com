@@ -1,4 +1,4 @@
-export const route = [
+export const route: (Record<string, any>&{name: string, address: string, placeId: string, place?: any})[] = [
     {
         name: "The Angel",
         address: '101 Bermondsey Wall E, London SE16 4NB',

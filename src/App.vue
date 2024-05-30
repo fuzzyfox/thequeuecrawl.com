@@ -14,7 +14,6 @@ import {
   BeerIcon
 } from 'lucide-vue-next'
 import {Button} from "@/ui/button"
-import {google} from "@googlemaps/js-api-loader";
 import qs from "qs";
 
 const map = ref()
@@ -25,7 +24,7 @@ const startLocationUrl = ref<string>('https://www.google.com/maps/dir/?' + qs.st
   destination_place_id: 'ChIJlar6FzwDdkgRnjisAZMgrQw'
 }))
 
-let gmap: google.maps.MapsLibrary
+let gmap: any
 
 loader.importLibrary('maps')
     .then(async ({Map}) => {
@@ -47,7 +46,7 @@ loader.importLibrary('maps')
         west: undefined as number|undefined
       }
 
-      const pubs: Place[] = await Promise.all(route.map(async (pub) => {
+      const pubs: (typeof Place)[] = await Promise.all(route.map(async (pub: any) => {
         const place = new Place({id: pub.placeId})
         await place.fetchFields({fields: ['location']})
         pub.place = place
@@ -83,7 +82,7 @@ loader.importLibrary('maps')
         destination: pubs.at(-1).place.location,
         waypoints: pubs.slice(1, -1).map(pub => ({location: pub.place.location, stopover: !pub.waypoint})),
         travelMode: 'WALKING',
-      }).then((result) => directionsRenderer.setDirections(result))
+      }).then((result: any) => directionsRenderer.setDirections(result))
     })
 
 watch(showMap, (value) => {
@@ -140,7 +139,7 @@ const showDetails = ref<boolean>(!!qs.parse(window.location.search.substring(1))
 
         <div
             class="mx-auto mt-8 md:mt-12 grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
-          <Pub v-for="(pub, i) in route.filter(p => !p.waypoint)" :pub="pub" :index="i + 1"/>
+          <Pub v-for="(pub, i) in route.filter((p: any) => !p.waypoint)" :pub="pub" :index="i + 1"/>
         </div>
       </div>
     </section>
