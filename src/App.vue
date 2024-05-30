@@ -4,12 +4,26 @@ import Pub from './components/Pub.vue'
 import {route} from './assets/route'
 import {ref, watch} from "vue";
 import {loader} from "@/lib/maps.ts";
-import { MapIcon } from 'lucide-vue-next'
+import {
+  MapIcon,
+  CalendarDaysIcon,
+  ClockIcon,
+  LocateIcon,
+  TicketIcon,
+  GroupIcon,
+  BeerIcon
+} from 'lucide-vue-next'
 import {Button} from "@/ui/button"
 import {google} from "@googlemaps/js-api-loader";
+import qs from "qs";
 
 const map = ref()
 const showMap = ref<boolean>(false)
+const startLocationUrl = ref<string>('https://www.google.com/maps/dir/?' + qs.stringify({
+  api: 1,
+  destination: 'Bermondsey, London SE16 4RT',
+  destination_place_id: 'ChIJlar6FzwDdkgRnjisAZMgrQw'
+}))
 
 let gmap: google.maps.MapsLibrary
 
@@ -81,6 +95,7 @@ watch(showMap, (value) => {
   })
 })
 
+const showDetails = ref<boolean>(!!qs.parse(window.location.search.substring(1)).showDetails)
 </script>
 
 <template>
@@ -129,6 +144,80 @@ watch(showMap, (value) => {
         </div>
       </div>
     </section>
+
+    <section v-if="showDetails" class="w-full py-12 md:py-24 lg:py-32">
+      <div class="container px-4 md:px-6">
+        <div class="grid gap-8">
+          <div>
+            <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">About The Queue Crawl</h2>
+            <p class="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              Join us for a fun-filled pub crawl through the city's best watering holes. Get ready to make new friends
+              and discover hidden gems as we raise a glass to Her Majesty Queen Elizabeth II.
+            </p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+            <div class="flex items-center gap-4">
+              <CalendarDaysIcon class="h-6 w-6" />
+              <div>
+                <h3 class="text-lg font-semibold">Date</h3>
+                <p class="text-gray-500 dark:text-gray-400">June 1, 2024</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <ClockIcon class="h-6 w-6" />
+              <div>
+                <h3 class="text-lg font-semibold">Time</h3>
+                <p class="text-gray-500 dark:text-gray-400">2:00 PM - Late</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <LocateIcon class="h-6 w-6" />
+              <div>
+                <h3 class="text-lg font-semibold">Start Location</h3>
+                <p class="text-gray-500 dark:text-gray-400">
+                  <a :href="startLocationUrl" rel="noopener" target="_blank">
+                    Bermondsy Tube Station
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <TicketIcon class="h-6 w-6" />
+              <div>
+                <h3 class="text-lg font-semibold">Tickets</h3>
+                <p class="text-gray-500 dark:text-gray-400">Free</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <GroupIcon class="h-6 w-6" />
+              <div>
+                <h3 class="text-lg font-semibold">Group Size</h3>
+                <p class="text-gray-500 dark:text-gray-400">5-10 people</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <BeerIcon class="h-6 w-6" />
+              <div>
+                <h3 class="text-lg font-semibold">Drinks Included</h3>
+                <p class="text-gray-500 dark:text-gray-400">None, buy your own!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+    <p class="text-xs text-gray-500 dark:text-gray-400">© 2024 The Queue Crawl. All rights reserved.</p>
+    <nav class="sm:ml-auto flex gap-4 sm:gap-6">
+      <a class="text-xs hover:underline underline-offset-4" href="#">
+        Terms of Service
+      </a>
+      <a class="text-xs hover:underline underline-offset-4" href="#">
+        Privacy
+      </a>
+    </nav>
+  </footer>
 </template>
 
