@@ -75,6 +75,12 @@ export const route = [
         placeId: 'ChIJ0eXrm7gEdkgR8muMXU0OQnU'
     },
     {
+        name: 'Morton\'s Tower',
+        address: '5 Lambeth Palace Rd, London SE1 7LB',
+        placeId: 'ChIJAVJSysEEdkgR-uz8jNAth7Y',
+        waypoint: true
+    },
+    {
         name: "The Marquis Of Granby",
         address: "41 Romney St, Greater, London SW1P 3RF",
         placeId: 'ChIJqa7rv8IEdkgRUBIXjWAPmVk'

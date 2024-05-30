@@ -5,7 +5,7 @@ import {computed, ref, watch} from "vue";
 import {loader} from  '@/lib/maps'
 import { MapIcon } from "lucide-vue-next";
 
-const props = defineProps<{ pub: Record<string, any> & { name: string, address: string, placeId: string } }>()
+const props = defineProps<{ pub: Record<string, any> & { name: string, address: string, placeId: string }, index?: number }>()
 
 const photoUrl = ref<string>()
 
@@ -28,7 +28,7 @@ watch(
           return;
         }
 
-        photoUrl.value = photos[0].getURI()
+        photoUrl.value = photos[0].getURI({maxHeight: 512, maxWidth: 512})
       } catch (error) {
         console.error(error)
       }
@@ -49,7 +49,7 @@ watch(
           style="aspectRatio: 80/80; objectFit: cover;"
       />
       <div>
-        <h3 class="text-lg font-bold">{{ pub.name }}</h3>
+        <h3 class="text-lg font-bold">{{ index }}{{ index ? '.' : null }} {{ pub.name }}</h3>
         <p class="text-sm text-gray-500 dark:text-gray-400">{{ pub.address }}</p>
         <Button as="a" type="button" size="xs" :href="directionsUrl" rel="noopener" target="_blank" class="mt-2">
           <MapIcon class="size-4 mr-1" />
