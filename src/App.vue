@@ -166,7 +166,7 @@ const showDetails = ref<boolean>(!!qs.parse(window.location.search.substring(1))
               <ClockIcon class="h-6 w-6" />
               <div>
                 <h3 class="text-lg font-semibold">Time</h3>
-                <p class="text-gray-500 dark:text-gray-400">2:00 PM - Late</p>
+                <p class="text-gray-500 dark:text-gray-400">1:45 PM - Late</p>
               </div>
             </div>
             <div class="flex items-center gap-4">
