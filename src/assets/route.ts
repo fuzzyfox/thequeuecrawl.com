@@ -1,4 +1,12 @@
-export const route: (Record<string, any> & { name: string, address: string, placeId?: string, place?: any, location?: {lat: number, lng: number} })[] = [
+export interface RouteLocation extends Record<string, any> {
+    name: string
+    address: string
+    placeId?: string
+    place?: any
+    location?: {lat: number, lng: number}
+}
+
+export const route: RouteLocation[] = [
     {
         name: "The Angel",
         address: '101 Bermondsey Wall E, London SE16 4NB',

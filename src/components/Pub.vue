@@ -4,8 +4,9 @@ import qs from 'qs'
 import {computed, ref, watch} from "vue";
 import {loader} from  '@/lib/maps'
 import { MapIcon } from "lucide-vue-next";
+import {RouteLocation} from "@/assets/route.ts";
 
-const props = defineProps<{ pub: Record<string, any> & { name: string, address: string, placeId: string }, index?: number }>()
+const props = defineProps<{ pub: RouteLocation, index?: number }>()
 
 const photoUrl = ref<string>()
 
