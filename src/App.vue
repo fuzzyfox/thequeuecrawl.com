@@ -47,13 +47,18 @@ loader.importLibrary('maps')
       }
 
       const pubs: (typeof Place)[] = await Promise.all(route.map(async (pub: any) => {
+        if (!pub.placeId) return pub
+
         const place = new Place({id: pub.placeId})
-        await place.fetchFields({fields: ['location']})
+        await place.fetchFields({fields: ['displayName', 'location']})
         pub.place = place
+
         return pub
       }))
 
       pubs.forEach((pub) => {
+        if (!pub.placeId) return pub
+
         const place = pub.place
         bounds.north = Math.max(bounds.north ?? place.location.lat(), place.location.lat())
         bounds.south = Math.min(bounds.south ?? place.location.lat(), place.location.lat())
@@ -75,13 +80,15 @@ loader.importLibrary('maps')
       const directionsRenderer = new DirectionsRenderer({
         map: gmap,
         draggagle: false,
+        suppressMarkers: true,
       })
 
       directionService.route({
         origin: pubs.at(0).place.location,
         destination: pubs.at(-1).place.location,
-        waypoints: pubs.slice(1, -1).map(pub => ({location: pub.place.location, stopover: !pub.waypoint})),
         travelMode: 'WALKING',
+        region: 'uk',
+        waypoints: pubs.slice(1, -1).map(pub => ({location: pub.place?.location || pub.location, stopover: !pub.waypoint})),
       }).then((result: any) => directionsRenderer.setDirections(result))
     })
 

@@ -1,8 +1,13 @@
-export const route: (Record<string, any>&{name: string, address: string, placeId: string, place?: any})[] = [
+export const route: (Record<string, any> & { name: string, address: string, placeId?: string, place?: any, location?: {lat: number, lng: number} })[] = [
     {
         name: "The Angel",
         address: '101 Bermondsey Wall E, London SE16 4NB',
         placeId: 'ChIJu6FqNjsDdkgRS8MOuaNPjD0'
+    },
+    {
+        name: "The Old Justice",
+        address: "94 Bermondsey Wall E, London SE16 4TY",
+        placeId: 'ChIJVYnj4zsDdkgRwZU7l1KpfJ8'
     },
     {
         name: "The Ship Aground",
@@ -15,9 +20,10 @@ export const route: (Record<string, any>&{name: string, address: string, placeId
         placeId: 'ChIJY18_MHoDdkgRz3XiJZOA8vE'
     },
     {
-        name: "Dean Swift Pub",
-        address: "10 Gainsford St, London SE1 2NE",
-        placeId: 'ChIJ0YojPkYDdkgR3EaWN1g8xzg'
+        name: 'St Saviours Dock Footbridge',
+        address: '32 River View, Chadwell St Mary, London, Grays RM16 4BJ',
+        placeId: 'ChIJe65QhEcDdkgR6kTYoEuO3No',
+        waypoint: true
     },
     {
         name: "Anchor Tap",
@@ -50,6 +56,18 @@ export const route: (Record<string, any>&{name: string, address: string, placeId
         placeId: 'ChIJDRaQMVYDdkgRU-mYSkd2cNU'
     },
     {
+        name: 'Bankside',
+        address: '34 Park St, London SE1 9EF',
+        location: {lat:51.507386, lng:-0.092838},
+        waypoint: true
+    },
+    {
+        name: "French Cannon Bollard",
+        address: "2a Southwark Bridge Rd, London SE1 9HA",
+        placeId: "ChIJt5UhKi0FdkgR0rGjrLFWMQ8",
+        waypoint: true
+    },
+    {
         name: "Swan London",
         address: "21 New Globe Walk, Bankside, London SE1 9DT",
         placeId: 'ChIJ70dbCqkEdkgR_2rXCHnP0aQ'
@@ -70,14 +88,32 @@ export const route: (Record<string, any>&{name: string, address: string, placeId
         placeId: 'ChIJta3lNc4EdkgRvmx0zQa8Nhk'
     },
     {
+        name: 'Southbank Skate Space',
+        address: '337-338 Belvedere Rd, London SE1 8XT',
+        placeId: 'ChIJDY7H1rcEdkgRgkeF8HPADs4',
+        waypoint: true
+    },
+    {
+        name: 'South Bank Lion',
+        address: 'Westminster Bridge, The Queen\'s Walk, London SE1 7GA',
+        placeId: 'ChIJUzq0BukFdkgRKiQNv3tkD3c',
+        waypoint: true
+    },
+    {
         name: "Primo Bar",
         address: "London, 200 Westminster Bridge Rd, London SE1 7UT",
         placeId: 'ChIJ0eXrm7gEdkgR8muMXU0OQnU'
     },
     {
-        name: 'Morton\'s Tower',
-        address: '5 Lambeth Palace Rd, London SE1 7LB',
-        placeId: 'ChIJAVJSysEEdkgR-uz8jNAth7Y',
+        name: 'Bridge Arch Photo',
+        address: 'Lambeth, London SE1 7GL',
+        placeId: 'ChIJVTrviFcFdkgRQj4bYuhgsyw',
+        waypoint: true
+    },
+    {
+        name: 'Albert Embankment',
+        address: 'Lambeth Palace Rd, London SE1 7LB',
+        placeId: 'ChIJC0a5w6sFdkgRfp2lvEisH-o',
         waypoint: true
     },
     {
